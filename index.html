@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excel 预览与打印</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div>
+          <h1>Excel 预览与打印</h1>
+          <p>导入 Excel 文件，选择工作表，快速预览并打印或导出 PDF。</p>
+        </div>
+        <div class="app__actions">
+          <button id="printPdf" type="button" class="btn btn--primary" disabled>
+            打印 / 导出 PDF
+          </button>
+          <button id="printDirect" type="button" class="btn" disabled>
+            直接打印
+          </button>
+        </div>
+      </header>
+
+      <section class="card">
+        <div class="card__row">
+          <label class="file-input">
+            <input id="fileInput" type="file" accept=".xlsx,.xls" />
+            <span>选择 Excel 文件</span>
+          </label>
+          <div class="meta">
+            <span id="fileName">未选择文件</span>
+            <span id="sheetCount"></span>
+          </div>
+        </div>
+        <div class="card__row">
+          <label for="sheetSelect">工作表</label>
+          <select id="sheetSelect" disabled>
+            <option value="">请先导入文件</option>
+          </select>
+          <span id="status" class="status"></span>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__row">
+          <label for="configInput">模板配置（粘贴配置内容）</label>
+        </div>
+        <textarea
+          id="configInput"
+          rows="6"
+          placeholder="在此粘贴 XRTypeInfo 配置内容，用于生成模板表头。"
+        ></textarea>
+        <div class="card__row">
+          <button id="generateTemplate" type="button" class="btn">
+            根据配置生成模板
+          </button>
+          <span class="helper">生成后可直接打印或导出 PDF。</span>
+        </div>
+      </section>
+
+      <section class="preview card">
+        <div class="preview__header">
+          <h2>预览</h2>
+          <span id="previewHint">导入 Excel 文件后显示内容。</span>
+        </div>
+        <div id="preview" class="preview__content"></div>
+      </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
